@@ -23,7 +23,8 @@
 		}
 	},
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"sideEffects": false,
 	"packageManager": "pnpm@7.27.0",
