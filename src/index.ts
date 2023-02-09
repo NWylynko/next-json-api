@@ -7,7 +7,7 @@ export class ApiError extends Error {
   }
 }
 
-export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: NextApiResponse) => Promise<ResponseBody>) => {
+export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: NextApiResponse) => Promise<ResponseBody> | ResponseBody) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     // tell the client we are sending json
     res.setHeader("Content-Type", "application/json");
