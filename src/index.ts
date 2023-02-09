@@ -1,5 +1,4 @@
-import "source-map-support/register"
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export class ApiError<Message extends string> extends Error {
   constructor(public status: number, message: Message) {
