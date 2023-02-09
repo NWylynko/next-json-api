@@ -4,7 +4,7 @@ small function to simplify nextjs api routes
 ```ts
 import { JsonHandler, ApiError } from "next-json-api";
 
-const testHandler = JsonHandler(async (req, res) => {
+const handler = JsonHandler(async (req, res) => {
   if (Math.random() > 0.5) {
     throw new ApiError(500, "Something went wrong");
   }
@@ -14,5 +14,5 @@ const testHandler = JsonHandler(async (req, res) => {
   };
 });
 
-export default testHandler;
+export default handler;
 ```
