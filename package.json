@@ -1,0 +1,30 @@
+{
+	"name": "next-json-api",
+	"version": "0.0.0",
+	"license": "MIT",
+	"scripts": {
+		"build": "tsc",
+		"release": "bumpp"
+	},
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"imports": {
+		".": {
+			"require": "./dist/index.js",
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"packageManager": "pnpm@7.27.0",
+	"devDependencies": {
+		"next": "^13.0.0",
+		"typescript": "^4.9.5"
+	},
+	"peerDependencies": {
+		"next": "^13.0.0"
+	},
+	"dependencies": {
+		"bumpp": "^8.2.1",
+		"source-map-support": "^0.5.21"
+	}
+}
