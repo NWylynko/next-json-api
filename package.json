@@ -1,10 +1,17 @@
 {
 	"name": "next-json-api",
 	"version": "1.0.0",
+	"description": "Dead simple helper function to send json response in nextjs api routes",
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
 		"release": "bumpp"
+	},
+	"repository": "https://github.com/nwylynko/next-json-api",
+	"author": {
+		"name": "Nick Wylynko",
+		"email": "nick@wylynko.com",
+		"url": "https://nick.wylynko.com/"
 	},
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -15,6 +22,10 @@
 			"types": "./dist/index.d.ts"
 		}
 	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
 	"packageManager": "pnpm@7.27.0",
 	"devDependencies": {
 		"next": "^13.0.0",
@@ -26,5 +37,10 @@
 	"dependencies": {
 		"bumpp": "^8.2.1",
 		"source-map-support": "^0.5.21"
-	}
+	},
+	"keywords": [
+		"next",
+		"api",
+		"json"
+	]
 }
