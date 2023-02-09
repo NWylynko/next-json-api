@@ -1,8 +1,8 @@
 import "source-map-support/register"
 import { NextApiRequest, NextApiResponse } from "next";
 
-export class ApiError extends Error {
-  constructor(public status: number, message: string) {
+export class ApiError<Message extends string> extends Error {
+  constructor(public status: number, message: Message) {
     super(message);
   }
 }
@@ -23,7 +23,7 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
       // if the error is an ApiError, send the error message
       if (error instanceof ApiError) {
         res.status(error.status).json({ error: error.message });
-        return error;
+        return { error: error.message };
       } else {
         throw error;
       }
