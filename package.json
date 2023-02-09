@@ -4,25 +4,27 @@
 	"description": "Dead simple helper function to send json response in nextjs api routes",
 	"license": "MIT",
 	"scripts": {
-		"build": "tsc",
+		"build": "microbundle",
+		"dev": "microbundle watch",
 		"release": "bumpp"
 	},
+	"type": "module",
 	"repository": "https://github.com/nwylynko/next-json-api",
 	"author": {
 		"name": "Nick Wylynko",
 		"email": "nick@wylynko.com",
 		"url": "https://nick.wylynko.com/"
 	},
-	"main": "dist/index.js",
-	"source": "src/index.ts",
-	"types": "dist/index.d.ts",
+	"source": "./src/index.ts",
 	"imports": {
-		".": {
-			"require": "./dist/index.js",
-			"import": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		}
+		"types": "./dist/index.d.ts",
+		"require": "./dist/index.cjs",
+		"default": "./dist/index.modern.js"
 	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.module.js",
+	"unpkg": "./dist/index.umd.js",
+	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
 		"src"
@@ -30,6 +32,8 @@
 	"sideEffects": false,
 	"packageManager": "pnpm@7.27.0",
 	"devDependencies": {
+		"bumpp": "^8.2.1",
+		"microbundle": "^0.15.1",
 		"next": "^13.0.0",
 		"typescript": "^4.9.5"
 	},
@@ -37,7 +41,6 @@
 		"next": "^13.0.0"
 	},
 	"dependencies": {
-		"bumpp": "^8.2.1",
 		"source-map-support": "^0.5.21"
 	},
 	"keywords": [
