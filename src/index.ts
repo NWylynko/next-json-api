@@ -17,13 +17,15 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
       const data = await handler(req, res);
 
       // send the response
-      res.json(data);
-      return data;
+      const response = { ...data, error: null } as const
+      res.json(response);
+      return response; // returned for the type inference (nextjs will ignore it)
     } catch (error) {
       // if the error is an ApiError, send the error message
       if (error instanceof ApiError) {
-        res.status(error.status).json({ error: error.message });
-        return { error: error.message };
+        const response = { error: error.message } as const
+        res.status(error.status).json(response);
+        return response;
       } else {
         throw error;
       }
