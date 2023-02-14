@@ -1,6 +1,6 @@
 import "source-map-support/register"
 import type { NextApiRequest, NextApiResponse } from "next";
-import { status, type Statuses, type Status, type StatusCode } from "./status";
+import { status, type Status } from "./status";
 
 export class ApiError<Message extends string> extends Error {
   constructor(public status: Status, message: Message) {
@@ -23,7 +23,10 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
     } catch (error) {
       // if the error is an ApiError, send the error message
       if (error instanceof ApiError) {
-        const statusCode = status[error.status]
+        const statusCode = status[error.status];
+        if (!statusCode) {
+          throw new Error(`Invalid error status: ${error.status}`)
+        }
         const response = {
           error: error.message,
           status: error.status,
