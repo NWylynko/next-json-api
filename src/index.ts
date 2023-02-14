@@ -1,8 +1,9 @@
 import "source-map-support/register"
 import type { NextApiRequest, NextApiResponse } from "next";
+import { status, type Statuses, type Status, type StatusCode } from "./status";
 
 export class ApiError<Message extends string> extends Error {
-  constructor(public status: number, message: Message) {
+  constructor(public status: Status, message: Message) {
     super(message);
   }
 }
@@ -17,14 +18,18 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
       const data = await handler(req, res);
 
       // send the response
-      const response = { ...data, error: null } as const
-      res.json(response);
-      return response; // returned for the type inference (nextjs will ignore it)
+      res.json(data);
+      return data; // returned for the type inference (nextjs will ignore it)
     } catch (error) {
       // if the error is an ApiError, send the error message
       if (error instanceof ApiError) {
-        const response = { error: error.message } as const
-        res.status(error.status).json(response);
+        const statusCode = status[error.status]
+        const response = {
+          error: error.message,
+          status: error.status,
+          code: statusCode
+        } as const
+        res.status(statusCode).json(response);
         return response;
       } else {
         throw error;
