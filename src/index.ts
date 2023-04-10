@@ -40,3 +40,5 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
     }
   };
 };
+
+export type GetResponse<Handler extends ReturnType<typeof JsonHandler>> = Awaited<ReturnType<Handler>>
