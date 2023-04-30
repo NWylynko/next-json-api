@@ -1,6 +1,6 @@
 {
 	"name": "next-json-api",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "Dead simple helper function to send json response in nextjs api routes",
 	"license": "MIT",
 	"scripts": {
