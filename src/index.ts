@@ -19,7 +19,9 @@ export const JsonHandler = <ResponseBody>(handler: (req: NextApiRequest, res: Ne
 
       // send the response
       res.json(data);
-      return data; // returned for the type inference (nextjs will ignore it)
+
+      // returned for the type inference
+      return undefined as unknown as typeof data; 
     } catch (error) {
       // if the error is an ApiError, send the error message
       if (error instanceof ApiError) {
